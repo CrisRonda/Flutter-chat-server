@@ -23,12 +23,6 @@ app.use(express.static(PUBLIC_PATH));
 // routes
 app.use("/api/login", require("./routes/auth"));
 
-app.post("/", (req, res) => {
-  console.log(req.body);
-  return res.json({
-    body: req.body,
-  });
-});
 server.listen(PORT, (err) => {
   if (err) {
     throw new Error("Ocurrio un error");

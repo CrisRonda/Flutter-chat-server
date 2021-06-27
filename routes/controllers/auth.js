@@ -64,7 +64,23 @@ const loginUser = async (req, res = response) => {
     });
   }
 };
+
+const renewToken = async (req, res = response) => {
+  const { uuid } = req;
+  const token = await generateJWT({ uuid });
+  const userInDB = await User.findById(uuid);
+
+  return res.json({
+    ok: true,
+    msj: " Token renovado",
+    data: {
+      user: userInDB,
+      token,
+    },
+  });
+};
 module.exports = {
   createUser,
   loginUser,
+  renewToken,
 };
