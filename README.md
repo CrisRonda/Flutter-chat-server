@@ -1,11 +1,14 @@
 # Vote bands
 
-This project has a code for vote for any bands. This project has a 3 apps:
+This project has a code for vote for chat. This project has a 2 apps:
 
 - Backend: with NodeJS and Socket IO
-- Mobile app: with Flutter [visit the repo]()
-- Web app: HTML5, JS and CSS [visit the web here](https://flutter-bands-cronda.herokuapp.com/)
+- Mobile app: with Flutter [visit the repo](https://github.com/CrisRonda/Flutter-chat-socket)
 
 # Screenshot
 
-![screenshot](./Screenshots/001.gif)
+![screenshot](https://github.com/CrisRonda/Flutter-chat-socket/raw/main/screenshots/001.gif)
+
+<br/>
+
+![screenshot](https://github.com/CrisRonda/Flutter-chat-socket/raw/main/screenshots/002.gif)

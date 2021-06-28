@@ -16,6 +16,12 @@ body {
 .content {
   margin: 120px 0;
 }
+a {
+  font-size: 21px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
 header {
   position: sticky;
   background-color: black;
@@ -25,7 +31,7 @@ header {
 h1 {
   text-align: center;
 }
-canvas {
+img {
   width: 100%;
   max-width: 650px;
   min-width: 300px;
