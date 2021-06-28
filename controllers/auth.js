@@ -1,7 +1,7 @@
 const { response } = require("express");
 const bcrypt = require("bcryptjs");
-const User = require("../../models/user");
-const { generateJWT } = require("../../tokens/jwt");
+const User = require("../models/user");
+const { generateJWT } = require("../tokens/jwt");
 
 const createUser = async (req, res = response) => {
   const { email, password } = req.body;
@@ -18,10 +18,10 @@ const createUser = async (req, res = response) => {
 
     //Web token
     await newUser.save();
-    const token = await generateJWT({ uuid: newUser.id });
+    const token = await generateJWT({ uid: newUser.id });
     return res.json({
       ok: true,
-      msj: "User created!",
+      msj: "Usuario creado exitosamente",
       data: {
         user: newUser,
         token,
@@ -31,7 +31,7 @@ const createUser = async (req, res = response) => {
     console.log(error);
     return res.status(500).json({
       ok: false,
-      msj: "Error server",
+      msj: "Error del servidor 😭",
     });
   }
 };
@@ -41,16 +41,16 @@ const loginUser = async (req, res = response) => {
   try {
     const userInDB = await User.findOne({ email });
     if (!userInDB) {
-      return res.status(404).json({ ok: false, msj: "Email not register" });
+      return res.status(404).json({ ok: false, msj: "Email no valido" });
     }
     const validPassword = bcrypt.compareSync(password, userInDB.password);
     if (!validPassword) {
-      return res.status(400).json({ ok: false, msj: "Password invalid" });
+      return res.status(400).json({ ok: false, msj: "Contraseña no valida" });
     }
-    const token = await generateJWT({ uuid: userInDB.id });
+    const token = await generateJWT({ uid: userInDB.id });
     return res.json({
       ok: true,
-      msj: "Success login!",
+      msj: `Bienvenido ${userInDB.name}`,
       data: {
         user: userInDB,
         token,
@@ -60,19 +60,19 @@ const loginUser = async (req, res = response) => {
     console.log(error);
     return res.status(500).json({
       ok: false,
-      msj: "Error server",
+      msj: "Error en el servidor 😭",
     });
   }
 };
 
 const renewToken = async (req, res = response) => {
-  const { uuid } = req;
-  const token = await generateJWT({ uuid });
-  const userInDB = await User.findById(uuid);
+  const { uid } = req;
+  const token = await generateJWT({ uid });
+  const userInDB = await User.findById(uid);
 
   return res.json({
     ok: true,
-    msj: " Token renovado",
+    msj: "Usuario autenticado correctamente",
     data: {
       user: userInDB,
       token,

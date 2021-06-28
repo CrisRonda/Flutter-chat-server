@@ -30,9 +30,9 @@ function socketConnection() {
   socket.on("disconnect", function () {
     console.log("Desconectado con el server");
   });
-  socket.on("active-bands", function (payload) {
-    renderChart(payload);
-  });
+  // socket.on("active-bands", function (payload) {
+  //   renderChart(payload);
+  // });
 }
 
 function renderChart(data) {
